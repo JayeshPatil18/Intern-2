@@ -244,74 +244,6 @@ class _SignUpState extends State<SignUp> {
                         Autocomplete(
                           optionsBuilder: (TextEditingValue textEditingValue) {
                             if (textEditingValue.text == "") {
-                              return Items.citys;
-                            }
-                            return Items.state.where((String element) {
-                              return element.toLowerCase().contains(
-                                  textEditingValue.text.toLowerCase());
-                            });
-                          },
-                          onSelected: (String item) {},
-                          optionsViewBuilder: ((context, onSelected, options) {
-                            return Material(
-                              elevation: 6,
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Material(
-                                  child: Container(
-                                    width: (MediaQuery.of(context).size.width) -
-                                        40,
-                                    height: 450,
-                                    child: ListView.builder(
-                                      padding: EdgeInsets.all(6),
-                                      itemCount: options.length,
-                                      itemBuilder: (context, index) {
-                                        final String option =
-                                            options.elementAt(index);
-
-                                        return InkWell(
-                                          onTap: () {
-                                            onSelected(option);
-                                          },
-                                          child: ListTile(
-                                            title: Text(option,
-                                                style:
-                                                    MainFonts.suggestionText()),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          }),
-                          fieldViewBuilder: (context, textEditingController,
-                              focusNode, onFieldSubmitted) {
-                            cityController = textEditingController;
-                            _focusCityNode = focusNode;
-                            return TextFormField(
-                              validator: ((value) {
-                                return _validateInput(value, 5);
-                              }),
-                              focusNode: _focusCityNode,
-                              controller: cityController,
-                              keyboardType: TextInputType.text,
-                              style: TextStyle(fontSize: 18),
-                              decoration: InputDecoration(
-                                labelText: 'City',
-                                hintText: 'Delhi',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                        SizedBox(height: 20),
-                        Autocomplete(
-                          optionsBuilder: (TextEditingValue textEditingValue) {
-                            if (textEditingValue.text == "") {
                               return Items.state;
                             }
                             return Items.state.where((String element) {
@@ -374,6 +306,74 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
                         );
+                          },
+                        ),
+                        SizedBox(height: 20),
+                        Autocomplete(
+                          optionsBuilder: (TextEditingValue textEditingValue) {
+                            if (textEditingValue.text == "") {
+                              return Items.citys;
+                            }
+                            return Items.state.where((String element) {
+                              return element.toLowerCase().contains(
+                                  textEditingValue.text.toLowerCase());
+                            });
+                          },
+                          onSelected: (String item) {},
+                          optionsViewBuilder: ((context, onSelected, options) {
+                            return Material(
+                              elevation: 6,
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Material(
+                                  child: Container(
+                                    width: (MediaQuery.of(context).size.width) -
+                                        40,
+                                    height: 450,
+                                    child: ListView.builder(
+                                      padding: EdgeInsets.all(6),
+                                      itemCount: options.length,
+                                      itemBuilder: (context, index) {
+                                        final String option =
+                                            options.elementAt(index);
+
+                                        return InkWell(
+                                          onTap: () {
+                                            onSelected(option);
+                                          },
+                                          child: ListTile(
+                                            title: Text(option,
+                                                style:
+                                                    MainFonts.suggestionText()),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                          fieldViewBuilder: (context, textEditingController,
+                              focusNode, onFieldSubmitted) {
+                            cityController = textEditingController;
+                            _focusCityNode = focusNode;
+                            return TextFormField(
+                              validator: ((value) {
+                                return _validateInput(value, 5);
+                              }),
+                              focusNode: _focusCityNode,
+                              controller: cityController,
+                              keyboardType: TextInputType.text,
+                              style: TextStyle(fontSize: 18),
+                              decoration: InputDecoration(
+                                labelText: 'City',
+                                hintText: 'Delhi',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                              ),
+                            );
                           },
                         ),
                         SizedBox(height: 30),

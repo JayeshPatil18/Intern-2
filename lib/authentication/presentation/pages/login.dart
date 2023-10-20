@@ -98,6 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                             return _validateInput(value, 0);
                           }),
                           controller: emailController,
+                          keyboardType: TextInputType.emailAddress,
                           style: TextStyle(fontSize: 18),
                           decoration: InputDecoration(
                             labelText: 'Address',
@@ -125,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                           validator: ((value) {
                             return _validateInput(value, 1);
                           }),
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.text,
                           controller: passwordController,
                           obscureText: _obscureText,
                           style: TextStyle(fontSize: 18),

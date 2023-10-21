@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:thesurvey/authentication/presentation/pages/signup.dart';
@@ -7,6 +8,7 @@ import 'package:thesurvey/pages/profile_page.dart';
 import 'package:thesurvey/utils/fonts.dart';
 import '../../../constants/values.dart';
 import 'authentication/presentation/pages/login.dart';
+import 'constants/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,6 +42,15 @@ class SplashPageState extends State<SplashPage> {
   static const String KEY_LOGIN = "isLogin";
   static const String KEY_LOGIN_DETAILS = "authToken";
 
+  final colorizeColors = [
+  thirdColor,
+  secondaryColor,
+  thirdColor,
+  fourthColor,
+];
+
+final colorizeTextStyle = TextStyle(color: Colors.black, fontSize: 17.5);
+
   @override
   void initState() {
     super.initState();
@@ -49,7 +60,7 @@ class SplashPageState extends State<SplashPage> {
 
     logInPageSkip();
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,8 +70,31 @@ class SplashPageState extends State<SplashPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(logoPath),
-              Text('Surveys Simplified, Insights Amplified', style: MainFonts.hintFieldText(color: Colors.black),)
+              Image.asset(logoPath, height: 74),
+              SizedBox(height: 14),
+              AnimatedTextKit(
+    animatedTexts: [
+      ColorizeAnimatedText(
+        'Surveys Simplified, Insights Amplified',
+        textStyle: colorizeTextStyle,
+        colors: colorizeColors,
+      ),
+      ColorizeAnimatedText(
+        'Surveys Simplified, Insights Amplified',
+        textStyle: colorizeTextStyle,
+        colors: colorizeColors,
+      ),
+      ColorizeAnimatedText(
+        'Surveys Simplified, Insights Amplified',
+        textStyle: colorizeTextStyle,
+        colors: colorizeColors,
+      ),
+    ],
+    isRepeatingAnimation: true,
+    onTap: () {
+      print("Tap Event");
+    },
+  ),
             ],
           )),
       )

@@ -72,9 +72,10 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(child: Image.asset(logoPath, height: 120,)),
+                SizedBox(height: 30),
+                Center(child: Image.asset(logoPath, height: 60,)),
                 SizedBox(
-                  height: 16,
+                  height: 30,
                 ),
                 Text('Login',
                     style: MainFonts.pageTitleText(color: thirdColor)),
@@ -101,27 +102,13 @@ class _LoginPageState extends State<LoginPage> {
                           keyboardType: TextInputType.emailAddress,
                           style: TextStyle(fontSize: 18),
                           decoration: InputDecoration(
-                            labelText: 'Address',
+                            labelText: 'Email Address',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                           ),
                         ),
-                        SizedBox(height: 30),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Container(
-                            padding: const EdgeInsets.only(bottom: 10, left: 5),
-                            child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPassword()));
-                                  },
-                                  child: Text('Forgot Password?',
-                                      style: AuthFonts.authMsgText(
-                                          color: fourthColor)),
-                                ),
-                          ),
-                        ),
+                        SizedBox(height: 20,),
                         TextFormField(
                           validator: ((value) {
                             return _validateInput(value, 1);
@@ -145,6 +132,20 @@ class _LoginPageState extends State<LoginPage> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            padding: const EdgeInsets.only(top: 10, left: 5),
+                            child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPassword()));
+                                  },
+                                  child: Text('Forgot Password?',
+                                      style: AuthFonts.authMsgText(
+                                          color: fourthColor)),
+                                ),
                           ),
                         ),
                         SizedBox(height: 20),

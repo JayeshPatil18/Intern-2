@@ -27,19 +27,19 @@ Future<int> getSurveyCount(String surveytype) async {
 
   switch (surveytype) {
     case 'total':
-      apiUrl = '${apiEndPoint}/total_survey_count_api?user_id=10';
+      apiUrl = '${apiEndPoint}/total_survey_count_api?user_id=${usertype}';
       break;
       
     case 'ongoing':
-      apiUrl = '${apiEndPoint}/ongoing_survey_count_api?user_id=3';
+      apiUrl = '${apiEndPoint}/ongoing_survey_count_api?user_id=${usertype}';
       break;
 
     case 'upcomming':
-      apiUrl = '${apiEndPoint}/ongoing_survey_count_api?user_id=3';
+      apiUrl = '${apiEndPoint}/ongoing_survey_count_api?user_id=${usertype}';
       break;
 
     case 'completed':
-          apiUrl = '${apiEndPoint}/complete_survey_count_api?user_id=3';
+          apiUrl = '${apiEndPoint}/complete_survey_count_api?user_id=${usertype}';
           break;
   }
 
@@ -72,7 +72,7 @@ Future<int> getStates() async {
 }
 
 Future<List<Survey>> getAllSurvey() async {
-  final String apiUrl = '${apiEndPoint}/all_surveys_api?user_id=10';
+  final String apiUrl = '${apiEndPoint}/all_surveys_api?user_id=${usertype}';
 
   // Make a POST request to the API
   final response = await http.get(Uri.parse(apiUrl));

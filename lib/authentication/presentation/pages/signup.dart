@@ -118,350 +118,355 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: primaryColor,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 40,
-                ),
-                Text('Create an Account',
-                    style: MainFonts.pageTitleText(color: thirdColor)),
-                SizedBox(
-                  height: 20,
-                ),
-                Form(
-                  key: _formKey,
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextFormField(
-                          validator: ((value) {
-                            return _validateInput(value, 0);
-                          }),
-                          controller: referralController,
-                          style: TextStyle(fontSize: 18),
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            hintText: 'Referral Code',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
+        elevation: 0.5,
+        title: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text('Create an Account',
+                      style: MainFonts.pageTitleText(color: thirdColor)),
+        ),
+      ),
+        backgroundColor: primaryColor,
+        body: SingleChildScrollView(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Form(
+                key: _formKey,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextFormField(
+                        validator: ((value) {
+                          return _validateInput(value, 0);
+                        }),
+                        controller: referralController,
+                        style: TextStyle(fontSize: 18),
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          hintText: 'Referral Code',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
                         ),
-                        SizedBox(height: 20),
-                        TextFormField(
-                          validator: ((value) {
-                            return _validateInput(value, 1);
-                          }),
-                          controller: nameController,
-                          style: TextStyle(fontSize: 18),
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                            labelText: 'Name',
-                            hintText: 'John Doe',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
+                      ),
+                      SizedBox(height: 20),
+                      TextFormField(
+                        validator: ((value) {
+                          return _validateInput(value, 1);
+                        }),
+                        controller: nameController,
+                        style: TextStyle(fontSize: 18),
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          labelText: 'Name',
+                          hintText: 'John Doe',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
                         ),
-                        SizedBox(height: 20),
-                        TextFormField(
-                          validator: ((value) {
-                            return _validateInput(value, 2);
-                          }),
-                          controller: emailController,
-                          style: TextStyle(fontSize: 18),
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            labelText: 'Email Address',
-                            hintText: 'hello@example.com',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
+                      ),
+                      SizedBox(height: 20),
+                      TextFormField(
+                        validator: ((value) {
+                          return _validateInput(value, 2);
+                        }),
+                        controller: emailController,
+                        style: TextStyle(fontSize: 18),
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          labelText: 'Email Address',
+                          hintText: 'hello@example.com',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
                         ),
-                        SizedBox(height: 20),
-                        TextFormField(
-                          controller: mobileController,
-                          keyboardType: TextInputType.number,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: ((value) {
-                            return _validateInput(value, 3);
-                          }),
-                          style: TextStyle(fontSize: 18),
-                          maxLength: 10,
-                          decoration: InputDecoration(
-                            prefixIcon: CountryCodePicker(
-                              textStyle: TextStyle(fontSize: 18),
-                              onChanged: ((value) {
-                                countryCode = value.dialCode.toString();
-                              }),
-                              initialSelection: '+91',
-                              favorite: ['+91', 'IND'],
-                              showFlagDialog: true,
-                              showFlagMain: false,
-                              alignLeft: false,
-                            ),
-                            labelText: 'Mobile',
-                            hintText: '1234567890',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
+                      ),
+                      SizedBox(height: 20),
+                      TextFormField(
+                        controller: mobileController,
+                        keyboardType: TextInputType.number,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: ((value) {
+                          return _validateInput(value, 3);
+                        }),
+                        style: TextStyle(fontSize: 18),
+                        maxLength: 10,
+                        decoration: InputDecoration(
+                          prefixIcon: CountryCodePicker(
+                            textStyle: TextStyle(fontSize: 18),
+                            onChanged: ((value) {
+                              countryCode = value.dialCode.toString();
+                            }),
+                            initialSelection: '+91',
+                            favorite: ['+91', 'IND'],
+                            showFlagDialog: true,
+                            showFlagMain: false,
+                            alignLeft: false,
+                          ),
+                          labelText: 'Mobile',
+                          hintText: '1234567890',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
                         ),
-                        SizedBox(height: 20),
-                        TextFormField(
-                          validator: ((value) {
-                            return _validateInput(value, 4);
-                          }),
-                          controller: passwordController,
-                          obscureText: _obscureText,
-                          keyboardType: TextInputType.text,
-                          style: TextStyle(fontSize: 18),
-                          decoration: InputDecoration(
-                            labelText: 'Password',
-                            suffixIcon: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _passwordVisible = !_passwordVisible;
-                                    _obscureText = !_obscureText;
-                                  });
-                                },
-                                icon: Icon(_passwordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off)),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
+                      ),
+                      SizedBox(height: 20),
+                      TextFormField(
+                        validator: ((value) {
+                          return _validateInput(value, 4);
+                        }),
+                        controller: passwordController,
+                        obscureText: _obscureText,
+                        keyboardType: TextInputType.text,
+                        style: TextStyle(fontSize: 18),
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _passwordVisible = !_passwordVisible;
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                              icon: Icon(_passwordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off)),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
                         ),
-                        SizedBox(height: 20),
-                        Autocomplete(
-                          optionsBuilder: (TextEditingValue textEditingValue) {
-                            if (textEditingValue.text == "") {
-                              return Items.state;
-                            }
-                            return Items.state.where((String element) {
-                              return element.toLowerCase().contains(
-                                  textEditingValue.text.toLowerCase());
-                            });
-                          },
-                          onSelected: (String item) {},
-                          optionsViewBuilder: ((context, onSelected, options) {
-                            return Material(
-                              elevation: 6,
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Material(
-                                  child: Container(
-                                    width: (MediaQuery.of(context).size.width) -
-                                        40,
-                                    height: 450,
-                                    child: ListView.builder(
-                                      padding: EdgeInsets.all(6),
-                                      itemCount: options.length,
-                                      itemBuilder: (context, index) {
-                                        final String option =
-                                            options.elementAt(index);
+                      ),
+                      SizedBox(height: 20),
+                      Autocomplete(
+                        optionsBuilder: (TextEditingValue textEditingValue) {
+                          if (textEditingValue.text == "") {
+                            return Items.state;
+                          }
+                          return Items.state.where((String element) {
+                            return element.toLowerCase().contains(
+                                textEditingValue.text.toLowerCase());
+                          });
+                        },
+                        onSelected: (String item) {},
+                        optionsViewBuilder: ((context, onSelected, options) {
+                          return Material(
+                            elevation: 6,
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: Material(
+                                child: Container(
+                                  width: (MediaQuery.of(context).size.width) -
+                                      40,
+                                  height: 450,
+                                  child: ListView.builder(
+                                    padding: EdgeInsets.all(6),
+                                    itemCount: options.length,
+                                    itemBuilder: (context, index) {
+                                      final String option =
+                                          options.elementAt(index);
 
-                                        return InkWell(
-                                          onTap: () {
-                                            onSelected(option);
-                                          },
-                                          child: ListTile(
-                                            title: Text(option,
-                                                style:
-                                                    MainFonts.suggestionText()),
-                                          ),
-                                        );
-                                      },
-                                    ),
+                                      return InkWell(
+                                        onTap: () {
+                                          onSelected(option);
+                                        },
+                                        child: ListTile(
+                                          title: Text(option,
+                                              style:
+                                                  MainFonts.suggestionText()),
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ),
                               ),
-                            );
-                          }),
-                          fieldViewBuilder: (context, textEditingController,
-                              focusNode, onFieldSubmitted) {
-                            stateController = textEditingController;
-                            _focusStateNode = focusNode;
-                            return TextFormField(
-                              keyboardType: TextInputType.text,
-                          validator: ((value) {
-                            return _validateInput(value, 6);
-                          }),
-                          controller: stateController,
-                          focusNode: _focusStateNode,
-                          style: TextStyle(fontSize: 18),
-                          decoration: InputDecoration(
-                            labelText: 'State',
-                            hintText: 'Delhi',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
                             ),
+                          );
+                        }),
+                        fieldViewBuilder: (context, textEditingController,
+                            focusNode, onFieldSubmitted) {
+                          stateController = textEditingController;
+                          _focusStateNode = focusNode;
+                          return TextFormField(
+                            keyboardType: TextInputType.text,
+                        validator: ((value) {
+                          return _validateInput(value, 6);
+                        }),
+                        controller: stateController,
+                        focusNode: _focusStateNode,
+                        style: TextStyle(fontSize: 18),
+                        decoration: InputDecoration(
+                          labelText: 'State',
+                          hintText: 'Delhi',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
-                        );
-                          },
                         ),
-                        SizedBox(height: 20),
-                        Autocomplete(
-                          optionsBuilder: (TextEditingValue textEditingValue) {
-                            if (textEditingValue.text == "") {
-                              return Items.citys;
-                            }
-                            return Items.state.where((String element) {
-                              return element.toLowerCase().contains(
-                                  textEditingValue.text.toLowerCase());
-                            });
-                          },
-                          onSelected: (String item) {},
-                          optionsViewBuilder: ((context, onSelected, options) {
-                            return Material(
-                              elevation: 6,
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Material(
-                                  child: Container(
-                                    width: (MediaQuery.of(context).size.width) -
-                                        40,
-                                    height: 450,
-                                    child: ListView.builder(
-                                      padding: EdgeInsets.all(6),
-                                      itemCount: options.length,
-                                      itemBuilder: (context, index) {
-                                        final String option =
-                                            options.elementAt(index);
+                      );
+                        },
+                      ),
+                      SizedBox(height: 20),
+                      Autocomplete(
+                        optionsBuilder: (TextEditingValue textEditingValue) {
+                          if (textEditingValue.text == "") {
+                            return Items.citys;
+                          }
+                          return Items.state.where((String element) {
+                            return element.toLowerCase().contains(
+                                textEditingValue.text.toLowerCase());
+                          });
+                        },
+                        onSelected: (String item) {},
+                        optionsViewBuilder: ((context, onSelected, options) {
+                          return Material(
+                            elevation: 6,
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: Material(
+                                child: Container(
+                                  width: (MediaQuery.of(context).size.width) -
+                                      40,
+                                  height: 450,
+                                  child: ListView.builder(
+                                    padding: EdgeInsets.all(6),
+                                    itemCount: options.length,
+                                    itemBuilder: (context, index) {
+                                      final String option =
+                                          options.elementAt(index);
 
-                                        return InkWell(
-                                          onTap: () {
-                                            onSelected(option);
-                                          },
-                                          child: ListTile(
-                                            title: Text(option,
-                                                style:
-                                                    MainFonts.suggestionText()),
-                                          ),
-                                        );
-                                      },
-                                    ),
+                                      return InkWell(
+                                        onTap: () {
+                                          onSelected(option);
+                                        },
+                                        child: ListTile(
+                                          title: Text(option,
+                                              style:
+                                                  MainFonts.suggestionText()),
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ),
                               ),
-                            );
-                          }),
-                          fieldViewBuilder: (context, textEditingController,
-                              focusNode, onFieldSubmitted) {
-                            cityController = textEditingController;
-                            _focusCityNode = focusNode;
-                            return TextFormField(
-                              validator: ((value) {
-                                return _validateInput(value, 5);
-                              }),
-                              focusNode: _focusCityNode,
-                              controller: cityController,
-                              keyboardType: TextInputType.text,
-                              style: TextStyle(fontSize: 18),
-                              decoration: InputDecoration(
-                                labelText: 'City',
-                                hintText: 'Delhi',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
+                            ),
+                          );
+                        }),
+                        fieldViewBuilder: (context, textEditingController,
+                            focusNode, onFieldSubmitted) {
+                          cityController = textEditingController;
+                          _focusCityNode = focusNode;
+                          return TextFormField(
+                            validator: ((value) {
+                              return _validateInput(value, 5);
+                            }),
+                            focusNode: _focusCityNode,
+                            controller: cityController,
+                            keyboardType: TextInputType.text,
+                            style: TextStyle(fontSize: 18),
+                            decoration: InputDecoration(
+                              labelText: 'City',
+                              hintText: 'Delhi',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
                               ),
-                            );
-                          },
-                        ),
-                        SizedBox(height: 30),
-                        Row(
-                          children: [
-                            Text('By continuing, you agree to our ',
+                            ),
+                          );
+                        },
+                      ),
+                      SizedBox(height: 30),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Flexible(
+                            child: Text('By continuing, you agree to our ',
                                 style: MainFonts.hintFieldText(fontSize: 16)),
-                            Text('terms of service.',
+                          ),
+                          Flexible(
+                            child: Text('terms of service.',
                                 style: MainFonts.hintFieldText(
                                     color: fourthColor, fontSize: 16)),
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                        Container(
-                          height: 55,
-                          width: double.infinity,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: secondaryColor,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                              ),
-                              onPressed: () async {
-                                bool isValid =
-                                    _formKey.currentState!.validate();
-                                if (isValid) {
-                                  int result = await createAccount(
-                                      referralController.text,
-                                      nameController.text,
-                                      emailController.text,
-                                      passwordController.text,
-                                      (countryCode + mobileController.text).substring(1),
-                                      cityController.text,
-                                      stateController.text,
-                                      partnerId.toString(),
-                                      usertype.toString());
-                                  if (result == 1) {
-                                    Navigator.of(context)
-                                        .popUntil((route) => route.isFirst);
-                                    Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => LoginPage()));
-                                            mySnackBarShow(context,
-                                        'Account created successfully!');
-                                  } else if(result == 0) {
-                                    mySnackBarShow(context,
-                                        'Email address already in use! Try another');
-                                  } else {
-                                    mySnackBarShow(context,
-                                        'Something went wrong! Try again');
-                                  }
-                                }
-                              },
-                              child: Text('Sign Up',
-                                  style: AuthFonts.authButtonText(
-                                      color: primaryColor))),
-                        )
-                      ]),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Align(
-                    alignment: Alignment.center,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()));
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Already have an account? ',
-                              textAlign: TextAlign.center,
-                              style: MainFonts.hintFieldText()),
-                          Text(
-                            'Sign in here',
-                            textAlign: TextAlign.center,
-                            style: MainFonts.lableText(color: secondaryColor),
                           ),
                         ],
                       ),
-                    ))
-              ],
-            ),
+                      SizedBox(height: 10),
+                      Container(
+                        height: 55,
+                        width: double.infinity,
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: secondaryColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                            ),
+                            onPressed: () async {
+                              bool isValid =
+                                  _formKey.currentState!.validate();
+                              if (isValid) {
+                                int result = await createAccount(
+                                    referralController.text,
+                                    nameController.text,
+                                    emailController.text,
+                                    passwordController.text,
+                                    (countryCode + mobileController.text).substring(1),
+                                    cityController.text,
+                                    stateController.text,
+                                    partnerId.toString(),
+                                    usertype.toString());
+                                if (result == 1) {
+                                  Navigator.of(context)
+                                      .popUntil((route) => route.isFirst);
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LoginPage()));
+                                          mySnackBarShow(context,
+                                      'Account created successfully!');
+                                } else if(result == 0) {
+                                  mySnackBarShow(context,
+                                      'Email address already in use! Try another');
+                                } else {
+                                  mySnackBarShow(context,
+                                      'Something went wrong! Try again');
+                                }
+                              }
+                            },
+                            child: Text('Sign Up',
+                                style: AuthFonts.authButtonText(
+                                    color: primaryColor))),
+                      )
+                    ]),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Align(
+                  alignment: Alignment.center,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginPage()));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Already have an account? ',
+                            textAlign: TextAlign.center,
+                            style: MainFonts.hintFieldText()),
+                        Text(
+                          'Sign In',
+                          textAlign: TextAlign.center,
+                          style: MainFonts.lableText(color: secondaryColor),
+                        ),
+                      ],
+                    ),
+                  ))
+            ],
           ),
         ));
   }

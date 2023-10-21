@@ -300,12 +300,9 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: primaryColor,
         title: Column(
           children: [
-            SizedBox(
-              height: 10,
-            ),
             Image.asset(
               logoPath,
-              height: 80,
+              height: heightOfLogo,
             ),
           ],
         ),

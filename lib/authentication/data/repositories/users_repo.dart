@@ -92,15 +92,14 @@ Future<int> login(String email, String password) async {
 
   // Create a JSON request body with email and password
   final Map<String, dynamic> requestBody = {
-    'email': email,
+    'username': email,
     'password': password,
   };
 
   // Make a POST request to the API
   final response = await http.post(
     Uri.parse(apiUrl),
-    body: jsonEncode(requestBody),
-    headers: {'Content-Type': 'application/json'},
+    body: requestBody,
   );
 
   if (response.statusCode == 200) {

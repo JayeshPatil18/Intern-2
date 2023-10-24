@@ -90,6 +90,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             return _validateInput(value, 0);
                           }),
                           controller: emailController,
+                          keyboardType: TextInputType.emailAddress,
                           style: TextStyle(fontSize: 18),
                           decoration: InputDecoration(
                             labelText: 'Address',

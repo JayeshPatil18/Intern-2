@@ -134,7 +134,11 @@ class _SignUpState extends State<SignUp> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              
+              SizedBox(height: 10),
+                Center(child: Image.asset(logoPath, height: 60,)),
+                SizedBox(
+                  height: 30,
+                ),
               Form(
                 key: _formKey,
                 child: Column(

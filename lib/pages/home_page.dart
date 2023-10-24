@@ -61,6 +61,11 @@ class _HomePageState extends State<HomePage> {
             children: [
               Column(
                 children: <Widget>[
+                  SizedBox(height: 20),
+                Center(child: Image.asset(logoPath, height: 60,)),
+                SizedBox(
+                  height: 10,
+                ),
                   Container(
                     alignment: AlignmentDirectional.centerStart,
                     padding: EdgeInsets.only(top: 28, left: 20, right: 20),
@@ -296,6 +301,21 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
+              Container(
+                margin: EdgeInsets.all(20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/images/comlogo.png', height: 70),
+                    SizedBox(height: 6),
+                    Text(
+                      'App version 1.0.1',
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ),

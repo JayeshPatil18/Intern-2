@@ -38,16 +38,16 @@ Future<void> updateLoginStatus(bool status) async {
   prefs.setBool(SplashPageState.KEY_LOGIN, status);
 }
 
-// Update login status
-Future<void> loginDetails(String uId, String username, String phoneNo) async {
+Future<void> updateLoginDetails(String uID, String uName, String uEmail) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setStringList('loginDetails', [uId, username, phoneNo]);
+  prefs.setStringList(SplashPageState.KEY_LOGIN_DETAILS, [uID, uName, uEmail]);
 }
 
 // get login status
 Future<List<String>?> getLoginDetails() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  List<String>? loginDetails = prefs.getStringList('loginDetails');
+  List<String>? loginDetails = prefs.getStringList(SplashPageState.KEY_LOGIN_DETAILS);
+
   return loginDetails;
 }
 

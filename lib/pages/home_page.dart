@@ -7,6 +7,7 @@ import 'package:thesurvey/authentication/presentation/pages/signup.dart';
 import 'package:thesurvey/constants/colors.dart';
 import 'package:thesurvey/entites/survey_model.dart';
 import 'package:thesurvey/pages/profile_page.dart';
+import 'package:thesurvey/pages/survey_cat.dart';
 import '../../../constants/values.dart';
 import '../utils/fonts.dart';
 import '../utils/methods.dart';
@@ -34,6 +35,10 @@ class _HomePageState extends State<HomePage> {
     completed = await getSurveyCount('completed');
     allSurvey = await getAllSurvey();
     setState(() {});
+  }
+
+  _moveToSurvey(String apiStr) {
+    Navigator.push(context,MaterialPageRoute(builder: (context) =>SurveyCat(surveyCat: apiStr,)));
   }
 
   @override
@@ -250,6 +255,7 @@ class _HomePageState extends State<HomePage> {
                             TextButton(
                               onPressed: () {
                                 updateLoginStatus(false);
+                                clearSharedPrefs();
                                 Navigator.of(context)
                                     .popUntil((route) => route.isFirst);
                                 Navigator.pushReplacement(
@@ -345,58 +351,68 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           children: [
                             Expanded(
-                                child: Container(
-                              decoration: BoxDecoration(
-                                  color: Color(0xFFB620CE),
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(14),
-                                child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        'assets/images/svg#Layer_1.png',
-                                        height: 60,
-                                        width: 60,
-                                      ),
-                                      Text(
-                                        'Total Survey',
-                                        style:
-                                            TextStyle(fontSize: 16, color: Colors.white),
-                                      ),
-                                      Text(total.toString(),
-                                          style: MainFonts.dashNoText()),
-                                    ]),
-                              ),
-                            )),
+                                child: GestureDetector(
+                                  onTap: (){
+                                    _moveToSurvey('all_surveys_api');
+                                  },
+                                  child: Container(
+                                                              decoration: BoxDecoration(
+                                    color: Color(0xFFB620CE),
+                                    borderRadius: BorderRadius.circular(10)),
+                                                              child: Padding(
+                                  padding: const EdgeInsets.all(14),
+                                  child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/svg#Layer_1.png',
+                                          height: 60,
+                                          width: 60,
+                                        ),
+                                        Text(
+                                          'Total Survey',
+                                          style:
+                                              TextStyle(fontSize: 16, color: Colors.white),
+                                        ),
+                                        Text(total.toString(),
+                                            style: MainFonts.dashNoText()),
+                                      ]),
+                                                              ),
+                                                            ),
+                                )),
                             SizedBox(
                               width: 10,
                             ),
                             Expanded(
-                                child: Container(
-                              decoration: BoxDecoration(
-                                  color: secondaryColor,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(14),
-                                child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        'assets/images/svg#Layer_1.png',
-                                        height: 60,
-                                        width: 60,
-                                      ),
-                                      Text(
-                                        'Ongoing Survey',
-                                        style:
-                                            TextStyle(fontSize: 16, color: Colors.white),
-                                      ),
-                                      Text(ongoing.toString(),
-                                          style: MainFonts.dashNoText()),
-                                    ]),
-                              ),
-                            )),
+                                child: GestureDetector(
+                                  onTap: (){
+                                    _moveToSurvey('surveys_get_api');
+                                  },
+                                  child: Container(
+                                                              decoration: BoxDecoration(
+                                    color: secondaryColor,
+                                    borderRadius: BorderRadius.circular(10)),
+                                                              child: Padding(
+                                  padding: const EdgeInsets.all(14),
+                                  child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/svg#Layer_1.png',
+                                          height: 60,
+                                          width: 60,
+                                        ),
+                                        Text(
+                                          'Ongoing Survey',
+                                          style:
+                                              TextStyle(fontSize: 16, color: Colors.white),
+                                        ),
+                                        Text(ongoing.toString(),
+                                            style: MainFonts.dashNoText()),
+                                      ]),
+                                                              ),
+                                                            ),
+                                )),
                           ],
                         ),
                         SizedBox(
@@ -405,58 +421,68 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           children: [
                             Expanded(
-                                child: Container(
-                              decoration: BoxDecoration(
-                                  color: thirdColor,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(14),
-                                child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        'assets/images/svg#Layer_1.png',
-                                        height: 60,
-                                        width: 60,
-                                      ),
-                                      Text(
-                                        'Upcoming Survey\'s',
-                                        style:
-                                            TextStyle(fontSize: 16, color: Colors.white),
-                                      ),
-                                      Text(upcomming.toString(),
-                                          style: MainFonts.dashNoText()),
-                                    ]),
-                              ),
-                            )),
+                                child: GestureDetector(
+                                  onTap: (){
+                                    _moveToSurvey('upcoming_get_api');
+                                  },
+                                  child: Container(
+                                                              decoration: BoxDecoration(
+                                    color: thirdColor,
+                                    borderRadius: BorderRadius.circular(10)),
+                                                              child: Padding(
+                                  padding: const EdgeInsets.all(14),
+                                  child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/svg#Layer_1.png',
+                                          height: 60,
+                                          width: 60,
+                                        ),
+                                        Text(
+                                          'Upcoming Survey\'s',
+                                          style:
+                                              TextStyle(fontSize: 16, color: Colors.white),
+                                        ),
+                                        Text(upcomming.toString(),
+                                            style: MainFonts.dashNoText()),
+                                      ]),
+                                                              ),
+                                                            ),
+                                )),
                             SizedBox(
                               width: 10,
                             ),
                             Expanded(
-                                child: Container(
-                              decoration: BoxDecoration(
-                                  color: fourthColor,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(14),
-                                child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        'assets/images/svg#Layer_1.png',
-                                        height: 60,
-                                        width: 60,
-                                      ),
-                                      Text(
-                                        'Completed Survey\'s',
-                                        style:
-                                            TextStyle(fontSize: 16, color: Colors.white),
-                                      ),
-                                      Text(completed.toString(),
-                                          style: MainFonts.dashNoText()),
-                                    ]),
-                              ),
-                            )),
+                                child: GestureDetector(
+                                  onTap: (){
+                                    _moveToSurvey('gets_survey_ans_api');
+                                  },
+                                  child: Container(
+                                                              decoration: BoxDecoration(
+                                    color: fourthColor,
+                                    borderRadius: BorderRadius.circular(10)),
+                                                              child: Padding(
+                                  padding: const EdgeInsets.all(14),
+                                  child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/svg#Layer_1.png',
+                                          height: 60,
+                                          width: 60,
+                                        ),
+                                        Text(
+                                          'Completed Survey\'s',
+                                          style:
+                                              TextStyle(fontSize: 16, color: Colors.white),
+                                        ),
+                                        Text(completed.toString(),
+                                            style: MainFonts.dashNoText()),
+                                      ]),
+                                                              ),
+                                                            ),
+                                )),
                           ],
                         ),
                       ],
@@ -504,7 +530,7 @@ class _HomePageState extends State<HomePage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    survey.surveyName,
+                                    survey.surveyName ?? '',
                                     style: MainFonts.pageTitleText(
                                         color: Colors.white),
                                   ),
@@ -516,12 +542,12 @@ class _HomePageState extends State<HomePage> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    'Start Date: ${survey.createdAt}',
+                                    'Start Date: ${survey.createdAt != null ? survey.createdAt!.substring(0, 10) : ''}',
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 14),
                                   ),
                                   Text(
-                                    'End Date: ${survey.date}',
+                                    'End Date: ${survey.date != null ? survey.date!.substring(0, 10) : ''}',
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 14),
                                   ),

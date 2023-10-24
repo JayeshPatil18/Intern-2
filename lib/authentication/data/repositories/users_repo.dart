@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:thesurvey/utils/items.dart';
+import 'package:thesurvey/utils/methods.dart';
 import 'dart:convert';
 
 import '../../../constants/values.dart';
@@ -71,8 +72,8 @@ Future<int> getStates() async {
   }
 }
 
-Future<List<Survey>> getAllSurvey() async {
-  final String apiUrl = '${apiEndPoint}/all_surveys_api?user_id=${usertype}';
+Future<List<Survey>> getAllSurvey({String apiStr = 'all_surveys_api'}) async {
+  final String apiUrl = '${apiEndPoint}/${apiStr}?user_id=${usertype}';
 
   // Make a POST request to the API
   final response = await http.get(Uri.parse(apiUrl));
@@ -110,7 +111,11 @@ Future<int> login(String email, String password) async {
       // Login failed, return -1
       return -1;
     } else {
-      // Login successful, return a success code (you can define your own)
+      updateLoginStatus(true);
+      usertype = int.parse(responseData['id']);
+      partnerId = int.parse(responseData['id']);
+
+      updateLoginDetails(responseData['id'], responseData['name'], responseData['email']);
       return 1; // You can use any other code to represent success.
     }
   } else {

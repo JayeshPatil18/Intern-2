@@ -179,7 +179,6 @@ class _LoginPageState extends State<LoginPage> {
                                 if (isValid) {
                                   int result = await login(emailController.text, passwordController.text);
                                   if (result == 1) {
-                                    updateLoginStatus(true);
                                     Navigator.of(context)
                                   .popUntil((route) => route.isFirst);
                                     Navigator.pushReplacement(

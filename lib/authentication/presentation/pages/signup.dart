@@ -134,6 +134,7 @@ class _SignUpState extends State<SignUp> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              
               Form(
                 key: _formKey,
                 child: Column(
